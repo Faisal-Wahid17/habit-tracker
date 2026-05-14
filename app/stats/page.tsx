@@ -6,18 +6,7 @@ import {
 } from 'recharts'
 import Heatmap from '@/components/Heatmap'
 
-interface Habit {
-  id: string
-  name: string
-  icon: string
-  color: string
-  frequency: string
-}
-
-interface Log {
-  habitId: string
-  date: string
-}
+import type { Habit, Log } from '@/types'
 
 const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 

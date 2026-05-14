@@ -3,18 +3,7 @@ import autoTable from 'jspdf-autotable'
 import { Document, Packer, Paragraph, Table, TableRow, TableCell, TextRun, HeadingLevel, AlignmentType, BorderStyle, WidthType } from 'docx'
 import { saveAs } from 'file-saver'
 
-interface Habit {
-  id: string
-  name: string
-  icon: string
-  color: string
-  frequency: string
-}
-
-interface Log {
-  habitId: string
-  date: string
-}
+import type { Habit, Log } from '@/types'
 
 function getStreak(habitId: string, logs: Log[]) {
   const habitLogs = logs
