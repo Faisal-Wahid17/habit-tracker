@@ -11,6 +11,7 @@ interface Habit {
   name: string
   icon: string
   color: string
+  frequency: string
 }
 
 interface Log {
