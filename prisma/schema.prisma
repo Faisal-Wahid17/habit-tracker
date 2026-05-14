@@ -1,0 +1,45 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id
+  email     String   @unique
+  name      String?
+  habits    Habit[]
+  createdAt DateTime @default(now())
+}
+
+model Habit {
+  id        String     @id @default(cuid())
+  userId    String
+  name      String
+  icon      String     @default("⭐")
+  color     String     @default("#534AB7")
+  frequency Frequency  @default(DAILY)
+  archived  Boolean    @default(false)
+  logs      HabitLog[]
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+}
+
+model HabitLog {
+  id      String   @id @default(cuid())
+  habitId String
+  date    DateTime
+  note    String?
+  habit   Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+
+  @@unique([habitId, date])
+}
+
+enum Frequency {
+  DAILY
+  WEEKDAYS
+  WEEKLY
+}
